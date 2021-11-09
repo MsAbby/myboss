@@ -1,8 +1,20 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin"); // 自动生成html的文件
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const os = require("os");
 const HappyPack = require("happypack");
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+
+/** 1、path.dirname()  : 获取目录
+  * 2、path.basename() : 获取全名
+  * 3、path.extname()  : 获取扩展名
+  * 4、path.parse()    : 将一个路径转换成一个js对象
+  * 5、path.format()   : 将一个js对象转换成路径
+  * 6、path.join()     : 拼接多个路径成一个路径
+  * 7、path.resolve()  : 将相对路径转为绝对路径
+  * 8、__dirname       : 返回被执行的 js 所在文件夹的绝对路径
+  * 9、__filename      : 返回被执行的 js 的绝对路径
+*/
 
 
 module.exports = {
@@ -16,6 +28,7 @@ module.exports = {
         port: 9000,
         hot: true,
         open: false,
+        inline: true, // 用来支持dev-server自动刷新的配置
         historyApiFallback: true,
         compress: true,
         proxy: {
@@ -73,8 +86,8 @@ module.exports = {
     },
     plugins: {
         new HtmlWebpackPlugin({
-            template: '',
-            filename: ''
+            template: path.join(__dirname, "./src/index.html"), // 源文件,
+            filename: 'index.html'
         }),
         new MiniCssExtractPlugin({
             filename: "[name].[contenthash:8].css",

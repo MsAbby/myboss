@@ -5,6 +5,12 @@
   "main": "index.js",
   "author": "lsm",
   "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --color --inline --progress --config build/webpack.dev.js",
+    "build": "NODE_ENV=production webpack --progress --config ./build/webpack.prod.js",
+    "build:report": "NODE_ENV=production webpack --progress --config ./build/webpack.prod.js",
+    "build:watch": "NODE_ENV=production webpack --progress --config ./build/webpack.prod.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-class-properties": "^7.16.0",
