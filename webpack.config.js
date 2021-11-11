@@ -19,9 +19,11 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 module.exports = {
     mode: "development", // 开发模式
-    entry: '',
+    entry: "./src/main.js", // 入口
     output: {
-
+        path: path.resolve("__dirname", "dist/"),
+        publicPath: "/dist", // 公共路径
+        filename: "bundle.js"
     },
     // 本地服务配置
     devServer: {
